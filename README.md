@@ -7,4 +7,9 @@ negotiated cipher, full cert chain walk, expiry findings.
 hx-tls audit api.target.com --json
 ```
 
-MIT — HackerX Official
+HackerX License
+
+## License
+
+Licensed under the [HackerX License](./LICENSE). Redistributions must retain copyright,
+license text, and [NOTICE](./NOTICE) attribution per the license terms.
