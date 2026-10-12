@@ -17,7 +17,9 @@ program
     else {
       console.log(chalk.bold(`${r.host}:${r.port}`));
       for (const p of r.protocols) {
-        console.log(`  ${p.protocol}: ${p.supported ? chalk.green(p.cipher ?? 'ok') : chalk.dim('no')}`);
+        console.log(
+          `  ${p.protocol}: ${p.supported ? chalk.green(p.cipher ?? 'ok') : chalk.dim('no')}`,
+        );
       }
       for (const f of r.findings) console.log(chalk.yellow(`[${f.severity}] ${f.message}`));
     }

@@ -24,7 +24,12 @@ export interface TlsPolicyReport {
   findings: Array<{ severity: string; message: string }>;
 }
 
-function probeProtocol(host: string, port: number, minVersion: string, maxVersion: string): Promise<ProtocolProbe> {
+function probeProtocol(
+  host: string,
+  port: number,
+  minVersion: string,
+  maxVersion: string,
+): Promise<ProtocolProbe> {
   return new Promise((resolve) => {
     const socket = tls.connect(
       {
@@ -76,7 +81,9 @@ export async function auditTlsPolicy(host: string, port = 443): Promise<TlsPolic
           validTo: c.valid_to,
           daysRemaining: days,
         });
-        c = (c as tls.PeerCertificate & { issuerCertificate?: tls.PeerCertificate }).issuerCertificate ?? null;
+        c =
+          (c as tls.PeerCertificate & { issuerCertificate?: tls.PeerCertificate })
+            .issuerCertificate ?? null;
         if (c && c.fingerprint === raw.fingerprint) break;
       }
       socket.end();
@@ -94,7 +101,10 @@ export async function auditTlsPolicy(host: string, port = 443): Promise<TlsPolic
   }
   const leaf = chain[0];
   if (leaf?.daysRemaining !== undefined && leaf.daysRemaining < 14) {
-    findings.push({ severity: 'high', message: `Certificate expires in ${leaf.daysRemaining} days` });
+    findings.push({
+      severity: 'high',
+      message: `Certificate expires in ${leaf.daysRemaining} days`,
+    });
   }
 
   return { host, port, protocols, chain, findings };
