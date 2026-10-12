@@ -1,6 +1,9 @@
 import type { ChainCert, ProtocolProbe, TlsPolicyReport } from '../types.js';
 
-export function buildTlsFindings(protocols: ProtocolProbe[], chain: ChainCert[]): TlsPolicyReport['findings'] {
+export function buildTlsFindings(
+  protocols: ProtocolProbe[],
+  chain: ChainCert[],
+): TlsPolicyReport['findings'] {
   const findings: TlsPolicyReport['findings'] = [];
   if (protocols.find((p) => p.protocol === 'TLSv1' && p.supported)) {
     findings.push({ severity: 'high', message: 'TLS 1.0 still enabled' });
