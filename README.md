@@ -19,7 +19,7 @@ chain, and emits ranked findings suitable for hardening reports and CI smoke che
 ## Install
 
 ```bash
-git clone https://github.com/HackerX-offical/hx-tls-policy-cli.git
+git clone https://github.com/HackerX-official/hx-tls-policy-cli.git
 cd hx-tls-policy-cli
 npm install
 npm run build
